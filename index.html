@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Weather - Tempo Agora</title>
+    <link rel="stylesheet" href="./can-style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./fontawesome/all.css" />
+    <link rel="stylesheet" href="./wicons/weather-icons.css" />
+    <link rel="stylesheet" href="./wicons/weather-icons-wind.css" />
+
+    <!-- Fav icon -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-sm navbar-dark customnavbar">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img
+              id="logo"
+              src="./images/logo.png"
+              alt=""
+              width="55px"
+              height="55px"
+            />
+            <span class="logo-text" style="font-weight: 800;">Tempo</span>
+          </a>
+
+          <div
+            class="d-flex justify-content-center"
+            id="navbarSupportedContent"
+            style="flex: 1"
+          >
+            <form id="myForm" class="d-flex searchWidth" onsubmit="event.preventDefault();myFunction()">
+              <div class="input-group">
+                <input
+                id="myinput"
+                  class="form-control me-2 my-input"
+                  type="search"
+                  placeholder="Buscar por cidade..."
+                  aria-label="Search"
+                />
+                <div
+                  class="d-flex align-items-center fs-5 text input-group-append"
+                >
+                  <a href="#" id="send"
+                    ><i class="fas fa-search" style="color: #d0d0d0"></i
+                  ></a>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <ul class="nav justify-content-end align-center infobar">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">
+                <i class="bi bi-globe2 fs-2 text"></i>
+                <span style="vertical-align: super">BR</span>
+                <span style="vertical-align: super; margin: 0 5px">|</span>
+                <span style="vertical-align: super; margin-right: 10px"
+                  >°C</span
+                >
+                <i class="bi bi-chevron-double-down fs-4 text"></i>
+              </a>
+            </li>
+          </ul>
+          <a class="toogleMenu" href="#">
+            <i class="fas fa-bars"></i>
+          </a>
+        </div>
+      </nav>
+    </header>
+  
+    <main class="d-flex justify-content-center my-1">
+      <div id="main-column">
+        <div class="card card-info">
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+            <h6 class="card-info-subtitle mb-2"></h6>
+            <div class="card-info-container">
+              <div>
+                <h1 class="temperature"></h1>
+                <h6 class="feelsLike"></h6>
+              </div>
+              <div>
+                <div>
+                  <i class="info-icon"></i>
+                  <h6 id="info-icon-h6" style="text-align: center"></h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title weathernow"></h5>
+            <ul class="card-info-bytime">
+
+            </ul>
+            </div>
+          </div>
+          
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Previsão Diária</h5>
+              <ul class="card-info-dayly">
+                
+              </ul>
+            </div>
+          </div>
+          
+          
+        </div>
+      </div>
+    </div>
+      
+      <div id="secondaryColumn">
+        <div class="card card-right">
+          <div class="card-body">
+            <h5 class="card-title">Ventos</h5>
+            <h6 id="windsubtitle" class="card-subtitle mb-2 text-muted"></h6>
+            <div class="d-flex justify-content-center">
+              <i
+                id="wind-icon"
+                class="wi wi-wind towards-23-deg wind-icons"
+              ></i>
+            </div>
+            <div class="d-flex justify-content-center">
+              <h5 class="windKm"></h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-right">
+          <div class="card-body">
+            <h5 class="card-title">Alertas</h5>
+            <h6 class="card-subtitle mb-2 text-muted alert-event"></h6>
+            <h6 class="card-text text-center alert-sender"></h6>
+            <p class="card-text alert-text"></p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <ul>
+        <li>
+          <img src="images/logo.png" width="45px" height="45px" />
+          <img src="images/twc.png" width="45px" height="45px" />
+          <img src="images/wu.png" width="45px" height="45px" />
+        </li>
+        <li>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0"><a href="#">Comentários</a></li>
+            <li class="list-group-item border-0"><a href="#">API climático</a></li>
+            <li class="list-group-item border-0"><a href="#">Sala de imprensa</a></li>
+          </ul>
+        </li>
+        <li>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0"><a href="#"><strong>Termos de Uso</strong></a></li>
+            <li class="list-group-item border-0"><a href="#"><strong>Política de Privacidade</strong></a></li>
+            <li class="list-group-item border-0"><a href="#"><strong>Fornecedores de dados</strong></a></li>
+          </ul>
+        </li>
+        <li>
+          <p class="m-0">Nós reconhecemos a responsabilidade que temos de usar tecnologia e dados para o bem. Assuma o controle de seus dados.</p>
+        </li>
+        <li>
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item border-0"><a href="#"><strong>Configurações de privacidade</strong></a></li>
+            <li class="list-group-item border-0"><a href="#"><strong>Direitos dos dados</strong></a></li>
+          </ul>
+        </li>
+        <li>
+          <p class="m-0 mb-5">© Copyright Nobody Product and Technology, 2050</p>
+        </li>
+      </ul>
+    </footer>
+
+    <script src="index.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./fontawesome/all.js"></script>
+    <!--Fontawsome -->
+  </body>
+</html>
